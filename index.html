@@ -24,11 +24,6 @@
 
 </body>
 
-<!-- <script>
-    src = "api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=d74fd1c79edbaf5fb5a9f820bf9acc60"
-</script> -->
-
-
 
 <!-- <script>
     function searchCurrentWeather(city) {
@@ -47,25 +42,57 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-    // This is our API key
-    var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
+    $(document).ready(function () {
+        $("#submitButton").click(function () {
+            const CITY = document.getElementById("#city-input")
+            //var static APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
 
-    // Here we are building the URL we need to query the database
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-        "q=Bujumbura,Burundi&appid=" + APIKey; //Change the city structure here and find a way to access just the weather for each city
 
-    // Here we run our AJAX call to the OpenWeatherMap API
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        // We store all of the retrieved data inside of an object called "response"
-        .then(function (response) {
 
-            // Log the queryURL
-            console.log(queryURL); // May have to create a loop for that array to create that information
+        }
 
-        });
+        )
+
+
+
+
+        // Here we are building the URL we need to query the database
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
+            "q =" + document.getElementById("#city-input") + "&appid=" + "d74fd1c79edbaf5fb5a9f820bf9acc60"; //Change the city structure here and find a way to access just the weather for each city
+
+        // Here we run our AJAX call to the OpenWeatherMap API
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            type: "JSON",
+            data: { q: document.getElementById("#city-input"), APIKey: "d74fd1c79edbaf5fb5a9f820bf9acc60" }, //, units: "metric"
+
+            then: function (data) {
+                $.each(data.weather, function (index, val) {
+                    var weatherForecast = "";
+                    $.each(data.weather, function (index, val) {
+                        weatherForecast += "<p><br>" + data.name + "</b><img src=" + val.icon + " .png ></p >" +
+                            data.main.temp + "&deg;F " + " | " + val.main + ", " +
+                            val.description
+                    });
+                    $("#displayWeatherForecast").html(weatherForecast);
+                });
+            }
+
+            // // We store all of the retrieved data inside of an object called "response"
+            // .then(function (response) {
+
+            //     // Log the queryURL
+            //     console.log(response); // May have to create a loop for that array to create that information
+
+            // });
+
+
+
+        })
+
+    });
+
 
 </script>
 
