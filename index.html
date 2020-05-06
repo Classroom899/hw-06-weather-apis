@@ -43,9 +43,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#submitButton").click(function () {
-            const CITY = document.getElementById("#city-input")
-            //var static APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
+        $("#submitButton").click(function (event) {
+            event.preventDefault()
+            const CITY = document.getElementById("weather-input").value
+            console.log(CITY);
+
+            var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
+            var query = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKey}`
+
+            $.ajax({
+                url: query,
+                method: "GET",
+
+
+
+
+            }).then(function (currentWeather) {
+                console.log(currentWeather);
+            })
+
+
+
+
 
 
 
@@ -64,8 +83,6 @@
         $.ajax({
             url: queryURL,
             method: "GET",
-            type: "JSON",
-            data: { q: document.getElementById("#city-input"), APIKey: "d74fd1c79edbaf5fb5a9f820bf9acc60" }, //, units: "metric"
 
             then: function (data) {
                 $.each(data.weather, function (index, val) {
