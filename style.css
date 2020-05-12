@@ -8,9 +8,42 @@
 
 .container {
 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+height: 50px;
+width: 600px;
+background: yellow;
+font-weight: bold;
+font-size: 30px;
+border: none;
+border-radius: 3px;
+padding: 10px;
+align-content: center;
+display: inline-block;
 
 }
 
 .weather-input {
     text-align: center;
+    
+}
+
+input[text="text"]{
+    height: 50px;
+    width: 600px;
+    background:grey;
+    font-weight: bold;
+    font-size: 30px;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    align-content: center;
+}
+
+input[text="submit"]{
+    height: 50px;
+    width: 500px;
+    background: yellow;
+    font-weight: bold;
+    font-size: 30px;
+    border: none;
+    border-radius: 3px;
 }
