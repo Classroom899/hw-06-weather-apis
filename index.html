@@ -16,7 +16,18 @@
         <hi>Current Weather</hi>
 
         <!--Add a city's weather information button goes here-->
-        <div id="city-weather"></div>
+        <div id="city-weather-form"></div>
+
+        <form id="current-city-form">
+            <label for="location-input">Add city here</label>
+            <input type="text" id="city-input">
+            <br>
+
+            <!-- Button triggers new city to be added -->
+            <input id="add-city-weather" type="submit" value="Add a city's location">
+        </form>
+
+
 
         <!--Select Box-->
         <form id="weather-location-form">
@@ -30,6 +41,12 @@
             <!--Add a submit button-->
             <button id="submitButton" type="submit" value="submitInput">Submit</button>
         </form>
+
+        <div class="display">
+            <h1 class="name"></h1>
+        </div>
+
+
 
         <!--Previous searches will go here-->
 
