@@ -24,9 +24,9 @@
             <br>
 
             <!-- Button triggers new city to be added -->
-            <input id="add-city-weather" type="submit" value="Add a city's location">
+            <div id="add-city-weather"></div>
         </form>
-
+        <!-- .append -->
 
 
         <!--Select Box-->
@@ -44,9 +44,16 @@
         </form>
 
         <div class="display">
-            <h1 class="name"></h1>
-            <p class="description"></p>
-            <p class="temp"></p>
+            <h1 class="name">
+                <ul currentWeather></ul>
+            </h1>
+            <p class="description">
+            <ul></ul>
+            </p>
+            <p class="temp">
+            <ul></ul>
+            </p>
+            <p class="humidity"></p>>
         </div>
 
 
@@ -61,22 +68,6 @@
 
 </body>
 
-
-<!-- <script>
-    function searchCurrentWeather(city) {
-        var queryURL = "";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-
-        },
-
-            console.log(response))
-
-
-</script> -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -86,7 +77,7 @@
             console.log(CITY);
 
             var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
-            var query = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKey}`
+            var query = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKey}&units=imperial`
 
             $.ajax({
                 url: query,
@@ -94,6 +85,12 @@
 
             }).then(function (currentWeather) {
                 console.log(currentWeather);
+                $(".name").text(currentWeather.name);
+                $(".description").text("Wind: " + currentWeather.wind.speed);
+                $(".temp").text("Current temperature: " + currentWeather.main.temp);
+                $(".humidity").text("Current humidity: " + currentWeather.main.humidity);
+                // $(".uv-index").text("UV Index: " + currentWeather.)
+                $("#add-city-weather").append(`<button>${currentWeather.name}</button>`)
             })
 
         }
@@ -101,43 +98,43 @@
         )
 
         // Here we are building the URL we need to query the database
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-            "q =" + document.getElementById("#city-input") + "&appid=" + "d74fd1c79edbaf5fb5a9f820bf9acc60"; //Change the city structure here and find a way to access just the weather for each city
+        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
+        //     "q =" + document.getElementById("#city-input") + "&appid=" + "d74fd1c79edbaf5fb5a9f820bf9acc60"; //Change the city structure here and find a way to access just the weather for each city
 
         // Here we run our AJAX call to the OpenWeatherMap API
-        $.ajax({
-            url: queryURL,
-            method: "GET",
+        // $.ajax({
+        //     url: queryURL,
+        //     method: "GET",
 
-            then: function (data) {
-                $.each(data.weather, function (index, val) {
-                    var weatherForecast = "";
-                    $.each(data.weather, function (index, val) {
-                        weatherForecast += "<p><br>" + data.name + "</b><img src=" + val.icon + " .png ></p >" +
-                            data.main.temp + "&deg;F " + " | " + val.main + ", " +
-                            val.description
-                    });
-                    $("#displayWeatherForecast").html(weatherForecast);
-                });
-            }
+        //     then: function (data) {
+        //         $.each(data.weather, function (index, val) {
+        //             var weatherForecast = "";
+        //             $.each(data.weather, function (index, val) {
+        //                 weatherForecast += "<p><br>" + data.name + "</b><img src=" + val.icon + " .png ></p >" +
+        //                     data.main.temp + "&deg;F " + " | " + val.main + ", " +
+        //                     val.description
+        //             });
+        //             $("#displayWeatherForecast").html(weatherForecast);
+        //         });
+        //     }
 
-            // // We store all of the retrieved data inside of an object called "response"
-            // .then(function (response) {
+        // // We store all of the retrieved data inside of an object called "response"
+        // .then(function (response) {
 
-            //     // Log the queryURL
-            //     console.log(response); // May have to create a loop for that array to create that information
+        //     // Log the queryURL
+        //     console.log(response); // May have to create a loop for that array to create that information
 
-            // });
+        // });
 
 
 
-        })
+    })
 
-    });
+
 
 
 </script>
-
+<script src="./script.js"></script>
 </body>
 
 </html>
