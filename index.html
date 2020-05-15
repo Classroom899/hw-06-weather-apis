@@ -136,7 +136,7 @@
 <!--API for UV below-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $("uvSubmitButton").click(function (event) {
+        $("#uvSubmitButton").click(function (event) {
             event.preventDefault()
             const lat = document.getElementById("uv-lat-input").value
             const long = document.getElementById("uv-long-input").value
@@ -144,7 +144,7 @@
             console.log(event); // Need to keep event
 
             var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
-            var query = `http://api.openweathermap.org/data/2.5/uvi?appid=${APIKEY}&lat=${lat}&lon=${lon}&cnt=${days}`
+            var query = `http://api.openweathermap.org/data/2.5/uvi?appid=${APIKey}&lat=${lat}&lon=${lon}&cnt=${days}`
 
             $.ajax({
                 url: query, // Utilize the query and don't have to make a new uv one
