@@ -11,58 +11,70 @@
 <!--Create weather dashboard that will run in the broser and feature dynamically updated HTML and CSS-->
 
 <body>
-
-    <div class="container">
-        <hi>Current Weather</hi>
+    <!--Renamed main container to be more specific-->
+    <div class="current-weather-container generic-container" <hi>Current Weather</hi>
 
         <!--Add a city's weather information button goes here-->
-        <div id="city-weather-form"></div>
+        <div class="generic-container-body">
+            <div id="city-weather-form"></div>
 
-        <form id="current-city-form">
-            <label for="location-input">Add city here</label>
-            <input type="text" id="city-input">
-            <br>
+            <form id="current-city-form">
+                <label for="location-input">Add city here</label>
+                <input type="text" class="centered-text" id="city-input">
+                <br>
 
-            <!-- Button triggers new city to be added -->
-            <div id="add-city-weather"></div>
-        </form>
-        <!-- .append -->
+                <!-- Button triggers new city to be added -->
+                <div id="add-city-weather"></div>
+            </form>
+            <!-- .append -->
 
 
-        <!--Select Box-->
-        <form id="weather-location-form">
+            <!--Select Box-->
+            <form id="weather-location-form">
 
-            <!--Need a label for the text box-->
-            <label for="city-input">Location</label>
+                <!--Need a label for the text box-->
+                <label for="city-input">Location</label>
 
-            <!--For our text input box-->
-            <input type="text" id="weather-input">
+                <!--For our text input box-->
+                <input type="text" class="centered-text" id="weather-input">
 
-            <!--Add a submit button-->
-            <button id="submitButton" class="inputValue" placeholder="Enter a city" type="submit"
-                value="submitInput">Submit</button>
-        </form>
+                <!--Add a submit button-->
+                <button id="submitButton" class="inputValue" placeholder="Enter a city" type="submit"
+                    value="submitInput">Submit</button>
+            </form>
 
-        <div class="display">
-            <h1 class="name">
-                <ul currentWeather></ul>
-            </h1>
-            <p class="description">
-            <ul></ul>
-            </p>
-            <p class="temp">
-            <ul></ul>
-            </p>
-            <p class="humidity"></p>
+
+            <!--Add UV Index -->
+
         </div>
+        <div>
 
 
 
-        <!--Previous searches will go here-->
+            <div class="display">
+                <h1 class="name">
+                    <ul currentWeather></ul>
+                </h1>
+                <p class="description">
+                <ul></ul>
+                </p>
+                <p class="temp">
+                <ul></ul>
+                </p>
+                <p class="humidity"></p>
+                <ul></ul>
+                <p class="uv-data">
+                <ul></ul>
+                </p>
+            </div>
 
 
 
-    </div>
+            <!--Previous searches will go here-->
+
+
+
+        </div>
 
 
 
@@ -131,6 +143,33 @@
     })
 
 
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("submitButton").click(function (UV) {
+            UV.preventDefault()
+            const UVINDEXC = document.getElementById("uv-index").value
+            console.log(UVINDEXC);
+
+            var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
+            var uv = "http://api.openweathermap.org/data/2.5/uvi?appid=${UVINDEXC}&lat={lat}&lon={lon}"
+
+            $.ajax({
+                url: uv,
+                method: "GET",
+            }).then(function (currentUV) {
+                console.log(currentUV);
+                $(".uv-data").text(currentUV.name);
+            }
+
+
+
+
+
+
+
+            )
+        }
 
 
 </script>
