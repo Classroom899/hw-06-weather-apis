@@ -12,7 +12,8 @@
 
 <body>
     <!--Renamed main container to be more specific-->
-    <div class="current-weather-container generic-container" <hi>Current Weather</hi>
+    <div class="current-weather-container generic-container">
+        <hi>Current Weather</hi>
 
         <!--Add a city's weather information button goes here-->
         <div class="generic-container-body">
@@ -49,8 +50,6 @@
         </div>
         <div>
 
-
-
             <div class="display">
                 <h1 class="name">
                     <ul currentWeather></ul>
@@ -68,15 +67,9 @@
                 </p>
             </div>
 
-
-
             <!--Previous searches will go here-->
 
-
-
         </div>
-
-
 
 </body>
 
@@ -109,36 +102,6 @@
 
         )
 
-        // Here we are building the URL we need to query the database
-        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-        //     "q =" + document.getElementById("#city-input") + "&appid=" + "d74fd1c79edbaf5fb5a9f820bf9acc60"; //Change the city structure here and find a way to access just the weather for each city
-
-        // Here we run our AJAX call to the OpenWeatherMap API
-        // $.ajax({
-        //     url: queryURL,
-        //     method: "GET",
-
-        //     then: function (data) {
-        //         $.each(data.weather, function (index, val) {
-        //             var weatherForecast = "";
-        //             $.each(data.weather, function (index, val) {
-        //                 weatherForecast += "<p><br>" + data.name + "</b><img src=" + val.icon + " .png ></p >" +
-        //                     data.main.temp + "&deg;F " + " | " + val.main + ", " +
-        //                     val.description
-        //             });
-        //             $("#displayWeatherForecast").html(weatherForecast);
-        //         });
-        //     }
-
-        // // We store all of the retrieved data inside of an object called "response"
-        // .then(function (response) {
-
-        //     // Log the queryURL
-        //     console.log(response); // May have to create a loop for that array to create that information
-
-        // });
-
-
 
     })
 
@@ -146,13 +109,13 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("submitButton").click(function (UV) {
-            UV.preventDefault()
+        $("UVsubmitButton").click(function (event) {
+            event.preventDefault()
             const UVINDEXC = document.getElementById("uv-index").value
             console.log(UVINDEXC);
 
             var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
-            var uv = "http://api.openweathermap.org/data/2.5/uvi?appid=${UVINDEXC}&lat={lat}&lon={lon}"
+            var uv = `http://api.openweathermap.org/data/2.5/uvi?appid=${APIKEY}&lat=${lat}&lon=${lon}&cnt=${days}`
 
             $.ajax({
                 url: uv,
