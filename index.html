@@ -76,13 +76,13 @@
 
                 <form class="uv-form">
                     <label for="uv-lat-label">Latitude</label>
-                    <input type="text" class="centered-text" id="uv-lat-input">
+                    <input type="text" class="centered-text" type="text" id="uv-lat-input">
 
                     <label for="uv-long-label">Longitude</label>
-                    <input type="text" class="centered-text" id="uv-long-input">
+                    <input type="text" class="centered-text" type="text" id="uv-long-input">
 
                     <label for="uv-days-label">Current Day</label>
-                    <input type="text" class="centered-text" id="uv-days-input">
+                    <input type="text" class="centered-text" type="number" id="uv-days-input">
                     <button id="uvSubmitButton" class="inputValue" type="submit" value="submitInput">Submit</button>
 
                 </form>
@@ -94,6 +94,8 @@
             </div>
 
         </div>
+
+    </div>
 
 </body>
 
@@ -118,7 +120,7 @@
                 $(".description").text("Wind: " + currentWeather.wind.speed);
                 $(".temp").text("Current temperature: " + currentWeather.main.temp);
                 $(".humidity").text("Current humidity: " + currentWeather.main.humidity);
-                // $(".uv-index").text("UV Index: " + currentWeather.)
+                $(".uv-display").text("UV Index: " + currentWeather);
                 $("#add-city-weather").append(`<button>${currentWeather.name}</button>`)
             })
             //create a class on the button and then click event for that and take what the button and re run the api search
@@ -131,32 +133,32 @@
 
 
 </script>
+<!--API for UV below-->
 <script type="text/javascript">
     $(document).ready(function () {
-        $("UVsubmitButton").click(function (event) {
+        $("uvSubmitButton").click(function (event) {
             event.preventDefault()
-            const UVINDEXC = document.getElementById("uv-index").value
-            console.log(UVINDEXC);
+            const lat = document.getElementById("uv-lat-input").value
+            const long = document.getElementById("uv-long-input").value
+            const days = document.getElementById("uv-days-input").value
+            console.log(event); // Need to keep event
 
             var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
-            var uv = `http://api.openweathermap.org/data/2.5/uvi?appid=${APIKEY}&lat=${lat}&lon=${lon}&cnt=${days}`
+            var query = `http://api.openweathermap.org/data/2.5/uvi?appid=${APIKEY}&lat=${lat}&lon=${lon}&cnt=${days}`
 
             $.ajax({
-                url: uv,
+                url: query, // Utilize the query and don't have to make a new uv one
                 method: "GET",
+
             }).then(function (currentUV) {
                 console.log(currentUV);
-                $(".uv-data").text(currentUV.name);
-            }
+                $(".uv-index").text("UV Index is: " + currentUV.name); // Have to add in a text format here also 
+            })
 
 
+        })
 
-
-
-
-
-            )
-        }
+    })
 
 
 </script>
