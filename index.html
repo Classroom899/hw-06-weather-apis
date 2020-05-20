@@ -95,6 +95,26 @@
 
         </div>
 
+        <!--5 Day Weather Forecast Container-->
+        <section class="five-day-forecast-container">
+            <h3 class="five-day-forecast-heading">Five-Day-Forecast</h3>
+            <div class="five-day-generic-container">
+                <div id="five-day-forecast-form-container"></div>
+
+                <form id="five-day-form">
+                    <label class="five-day-label">City</label>
+                    <input placeholder="Example: Phoenix" type="text" class="centered-text"
+                        id="five-day-forecast-city-input">
+                    <button id="five-day-forecast-submit-button" class="inputValue" type="submit"
+                        value="submitInput">Submit</button>
+                </form>
+
+                <ul id="five-day-forecast-display"></ul>
+
+            </div>
+
+        </section>
+
     </div>
 
 </body>
@@ -155,13 +175,23 @@
                 $(".uv-index").text("UV Index is: " + currentUV.name); // Have to add in a text format here also 
             })
 
-
         })
 
     })
 
-
 </script>
+
+<!--API for five day forecast-->
+<!--Using this by city name-->
+
+
+
+
+
+
+
+
+
 <script src="./script.js"></script>
 </body>
 
