@@ -68,6 +68,10 @@
 
         </div>
 
+        <!--Add a section for the previous cities to go to-->
+
+
+
         <!--UV Index Container to keep it separate from City-->
         <div class="uv-container">
             <h1>UV Index:</h1>
@@ -132,7 +136,7 @@
 
             $.ajax({
                 url: query,
-                method: "GET",
+                method: "GET", // Change this to type
 
             }).then(function (currentWeather) {
                 console.log(currentWeather);
@@ -142,17 +146,23 @@
                 $(".humidity").text("Current humidity: " + currentWeather.main.humidity);
                 $(".uv-display").text("UV Index: " + currentWeather);
                 $("#add-city-weather").append(`<button>${currentWeather.name}</button>`)
+                if (!history.includes(currentWeather)) {
+                    history.push(currentWeather);
+                }
             })
             //create a class on the button and then click event for that and take what the button and re run the api search
         }
 
         )
-
-
     })
 
 
 </script>
+<section>
+    <!--Add a section for icons as well-->
+</section>
+
+
 <!--API for UV below-->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -202,6 +212,8 @@
             }).then(function (fiveDaysForecast) {
                 console.log(fiveDaysForecast);
                 // $(".uv-index").text("UV Index is: " + currentUV.name); 
+
+
             })
 
         })
@@ -210,7 +222,9 @@
 
 
 
+
         < script src = "./script.js" ></script>
+
 </body>
 
 </html>
