@@ -183,16 +183,34 @@
 
 <!--API for five day forecast-->
 <!--Using this by city name-->
+<!--Use a similar code set here-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#five-day-forecast-submit-button").click(function (event) {
+            event.preventDefault()
+            const city = document.getElementById("five-day-forecast-city-input").value
+            console.log(event);
+
+            var APIKey = "d74fd1c79edbaf5fb5a9f820bf9acc60";
+            var query = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}`
+
+            $.ajax({
+                url: query,
+                method: "GET",
+
+            }).then(function (fiveDaysForecast) {
+                console.log(fiveDaysForecast);
+                // $(".uv-index").text("UV Index is: " + currentUV.name); 
+            })
+
+        })
+
+    })
 
 
 
-
-
-
-
-
-
-<script src="./script.js"></script>
+        < script src = "./script.js" ></script>
 </body>
 
 </html>
