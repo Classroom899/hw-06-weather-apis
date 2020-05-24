@@ -213,10 +213,13 @@
                 console.log(fiveDaysForecast);
                 var day = 1;
                 var hour = 0;
-                fiveDaysForecast.list.forEach(everyThirdHoursDate => {
-                    $("five-day-forecast-display").append(`<li>Day: ${day} Hour: ${hour} ${everyThirdHoursData.weather[0].main}</li>`);
+                fiveDaysForecast.list.forEach(everyThirdHoursData => {
+                    $("#five-day-forecast-display").append(`<li>Day: ${day} Hour: ${hour} ${everyThirdHoursData.weather[0].main}</li>`);
+                    if (hour + 3 === 24) {
+                        day++;
+                    }
+                    hour = (hour + 3 % 24);
                 })
-                // $(".uv-index").text("UV Index is: " + currentUV.name); 
 
 
             })
